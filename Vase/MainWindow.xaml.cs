@@ -62,15 +62,26 @@ namespace Vase
             Line cara = new Line();
 
             // Vytáhnutí všech naklikaných bodů a seřazení podle Y
-            List<Point> body = gridSelect.Children.Cast<Ellipse>().Select(x => new Point(x.Margin.Left + velikost / 2, 150 - x.Margin.Top + velikost / 2)).OrderBy(x => x.Y).ToList();
+            // Od 150 je offset jak moc bude posunut
+            // Odečítá se aby to nebylo obráceně
+            List<Point> body = gridSelect.Children.Cast<Ellipse>().Select(ellipsa => new Point(ellipsa.Margin.Left + velikost / 2, 150 - ellipsa.Margin.Top + velikost / 2)).OrderBy(x => x.Y).ToList();
+
+            // Musí být alespoň jeden bod
             if (body.Count > 0)
             {
-                for (int j = 0; j < 360; j += uhel)
+
+                // Otáčení okolo 360° podle předdefinovaného úhle
+                for (int aktualniUhel = 0; aktualniUhel < 360; aktualniUhel += uhel)
                 {
-                    Point bod1 = Axon3Dto2D(alf, bet, body[0].X, 0, body[0].Y, zoom, "z", j);
+                    // Část 1. - čáry nahoru
+
+                    // Začínám dole
+                    Point bod1 = Axon3Dto2D(alf, bet, body[0].X, 0, body[0].Y, zoom, "z", aktualniUhel);
+
+                    // Postupně jdu nahoru
                     for (int i = 1; i < body.Count; i++)
                     {
-                        Point bod2 = Axon3Dto2D(alf, bet, body[i].X, 0, body[i].Y, zoom, "z", j);
+                        Point bod2 = Axon3Dto2D(alf, bet, body[i].X, 0, body[i].Y, zoom, "z", aktualniUhel);
                         cara = new Line
                         {
                             Stroke = Brushes.Red,
@@ -83,12 +94,16 @@ namespace Vase
                         bod1 = bod2;
                     }
 
+                    // Vytváření horizontálních čar v jednom sloupci
                     for (int i = 0; i < body.Count; i++)
                     {
-                        Point bod3 = Axon3Dto2D(alf, bet, body[i].X, 0, body[i].Y, zoom, "z", j);
+                        // Získám bod jako nahoře
+                        Point bod3 = Axon3Dto2D(alf, bet, body[i].X, 0, body[i].Y, zoom, "z", aktualniUhel);
+
+                        // Pomocí vzorečků získám druhý bod
                         double X = body[i].X * Math.Cos(uhel * Math.PI / 180) - (0 * Math.Sin(uhel * Math.PI / 180));
                         double Y = body[i].X * Math.Sin(uhel * Math.PI / 180) + (0 * Math.Cos(uhel * Math.PI / 180));
-                        Point bod4 = Axon3Dto2D(alf, bet, X, Y, body[i].Y, zoom, "z", j);
+                        Point bod4 = Axon3Dto2D(alf, bet, X, Y, body[i].Y, zoom, "z", aktualniUhel);
                         cara = new Line
                         {
                             Stroke = Brushes.Red,
