@@ -61,6 +61,7 @@ namespace Vase
             gridik.Children.Clear();
             Line cara = new Line();
 
+            // Vytáhnutí všech naklikaných bodů a seřazení podle Y
             List<Point> body = gridSelect.Children.Cast<Ellipse>().Select(x => new Point(x.Margin.Left + velikost / 2, 150 - x.Margin.Top + velikost / 2)).OrderBy(x => x.Y).ToList();
             if (body.Count > 0)
             {
