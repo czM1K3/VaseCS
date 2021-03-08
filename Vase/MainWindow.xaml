@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize">
+        Title="Vase Generator" Height="450" Width="800" ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -17,9 +17,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="350"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnVykreslit" Content="Vykreslit" HorizontalAlignment="Left" Margin="25,27,0,0" VerticalAlignment="Top" Width="75" Grid.RowSpan="2" Click="btnVykreslit_Click"/>
-            <Button x:Name="btnClear" Content="Vyčistit" HorizontalAlignment="Left" Margin="124,27,0,0" VerticalAlignment="Top" Width="75" Click="btnClear_Click"/>
-            <Grid Name="gridSelect" Grid.Row="1" Background="LightGray" MouseDown="Grid_MouseDown">
+            <Button x:Name="btnRender" Content="Render" HorizontalAlignment="Left" Margin="25,27,0,0" VerticalAlignment="Top" Width="75" Grid.RowSpan="2" Click="btnRender_Click"/>
+            <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="124,27,0,0" VerticalAlignment="Top" Width="75" Click="btnClear_Click"/>
+            <Grid Name="gridSelect" Grid.Row="1" Background="LightGray" MouseDown="gridSelect_MouseDown">
                 
             </Grid>
         </Grid>
