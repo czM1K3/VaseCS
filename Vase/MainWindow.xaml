@@ -17,11 +17,11 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="350"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnRender" Content="Render" HorizontalAlignment="Left" Margin="25,27,0,0" VerticalAlignment="Top" Width="75" Grid.RowSpan="2" Click="btnRender_Click"/>
-            <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="124,27,0,0" VerticalAlignment="Top" Width="75" Click="btnClear_Click"/>
-            <Grid Name="gridSelect" Grid.Row="1" Background="LightGray" MouseDown="gridSelect_MouseDown">
-                
-            </Grid>
+            <Button x:Name="btnRender" Content="Render" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btnRender_Click"/>
+            <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="75" Click="btnClear_Click"/>
+            <Grid Name="gridSelect" Grid.Row="1" Background="LightGray" MouseDown="gridSelect_MouseDown"/>
+            <Slider x:Name="sldrAngle" HorizontalAlignment="Left" Margin="90,12,0,0" VerticalAlignment="Top" Width="150" Minimum="5" Maximum="90" IsSnapToTickEnabled="True" TickFrequency="5" Value="10"/>
+            <Label Content="{Binding ElementName=sldrAngle, Path=Value}" HorizontalAlignment="Left" Margin="240,7,0,0" VerticalAlignment="Top"/>
         </Grid>
 
     </Grid>

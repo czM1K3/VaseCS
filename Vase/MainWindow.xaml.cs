@@ -47,6 +47,7 @@ namespace Vase
 
         private void btnRender_Click(object sender, RoutedEventArgs e)
         {
+            angle = (int) sldrAngle.Value;
             Draw();
         }
 
@@ -70,33 +71,29 @@ namespace Vase
                     for (int i = 1; i < body.Count; i++)
                     {
                         Point point2 = Axon3Dto2D(alf, bet, body[i].X, 0, body[i].Y, zoom, "z", j);
-                        line = new Line
+                        gridik.Children.Add(new Line
                         {
                             Stroke = Brushes.Red,
                             X1 = point1.X,
                             Y1 = point1.Y,
                             X2 = point2.X,
                             Y2 = point2.Y
-                        };
-                        gridik.Children.Add(line);
+                        });
                         point1 = point2;
                     }
 
                     for (int i = 0; i < body.Count; i++)
                     {
                         Point point3 = Axon3Dto2D(alf, bet, body[i].X, 0, body[i].Y, zoom, "z", j);
-                        double X = body[i].X * Math.Cos(angle * Math.PI / 180) - (0 * Math.Sin(angle * Math.PI / 180));
-                        double Y = body[i].X * Math.Sin(angle * Math.PI / 180) + (0 * Math.Cos(angle * Math.PI / 180));
-                        Point point4 = Axon3Dto2D(alf, bet, X, Y, body[i].Y, zoom, "z", j);
-                        line = new Line
+                        Point point4 = Axon3Dto2D(alf, bet, body[i].X * Math.Cos(angle * Math.PI / 180) - (0 * Math.Sin(angle * Math.PI / 180)), body[i].X * Math.Sin(angle * Math.PI / 180) + (0 * Math.Cos(angle * Math.PI / 180)), body[i].Y, zoom, "z", j);
+                        gridik.Children.Add(new Line
                         {
                             Stroke = Brushes.Red,
                             X1 = point3.X,
                             Y1 = point3.Y,
                             X2 = point4.X,
                             Y2 = point4.Y
-                        };
-                        gridik.Children.Add(line);
+                        });
                     }
                 }
             }
