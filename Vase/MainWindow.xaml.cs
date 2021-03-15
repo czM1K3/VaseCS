@@ -85,7 +85,7 @@ namespace Vase
                     for (int i = 0; i < body.Count; i++)
                     {
                         Point point3 = Axon3Dto2D(alf, bet, body[i].X, 0, body[i].Y, zoom, "z", j);
-                        Point point4 = Axon3Dto2D(alf, bet, body[i].X * Math.Cos(angle * Math.PI / 180) - (0 * Math.Sin(angle * Math.PI / 180)), body[i].X * Math.Sin(angle * Math.PI / 180) + (0 * Math.Cos(angle * Math.PI / 180)), body[i].Y, zoom, "z", j);
+                        Point point4 = Axon3Dto2D(alf, bet, body[i].X * Math.Cos(angle * Math.PI / 180) , body[i].X * Math.Sin(angle * Math.PI / 180), body[i].Y, zoom, "z", j);
                         gridik.Children.Add(new Line
                         {
                             Stroke = Brushes.Red,
