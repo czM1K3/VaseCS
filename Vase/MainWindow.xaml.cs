@@ -21,7 +21,7 @@ namespace Vase
     public partial class MainWindow : Window
     {
         int alf = 30, bet = 30, angle = 10;
-        double zoom = 0.5, size = 10;
+        double size = 10;
 
         public MainWindow()
         {
@@ -51,6 +51,11 @@ namespace Vase
             Draw();
         }
 
+        private void sldr_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (sldrX != null && sldrY != null && sldrZ != null) Draw();
+        }
+
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             gridSelect.Children.Clear();
@@ -67,10 +72,10 @@ namespace Vase
             {
                 for (int j = 0; j < 360; j += angle)
                 {
-                    Point point1 = Axon3Dto2D(alf, bet, body[0].X, 0, body[0].Y, zoom, "z", j);
+                    Point point1 = Axon3Dto2D(alf, bet, body[0].X, 0, body[0].Y, sldrZoom.Value, "z", j);
                     for (int i = 1; i < body.Count; i++)
                     {
-                        Point point2 = Axon3Dto2D(alf, bet, body[i].X, 0, body[i].Y, zoom, "z", j);
+                        Point point2 = Axon3Dto2D(alf, bet, body[i].X, 0, body[i].Y, sldrZoom.Value, "z", j);
                         gridik.Children.Add(new Line
                         {
                             Stroke = Brushes.Red,
@@ -84,8 +89,8 @@ namespace Vase
 
                     for (int i = 0; i < body.Count; i++)
                     {
-                        Point point3 = Axon3Dto2D(alf, bet, body[i].X, 0, body[i].Y, zoom, "z", j);
-                        Point point4 = Axon3Dto2D(alf, bet, body[i].X * Math.Cos(angle * Math.PI / 180) , body[i].X * Math.Sin(angle * Math.PI / 180), body[i].Y, zoom, "z", j);
+                        Point point3 = Axon3Dto2D(alf, bet, body[i].X, 0, body[i].Y, sldrZoom.Value, "z", j);
+                        Point point4 = Axon3Dto2D(alf, bet, body[i].X * Math.Cos(angle * Math.PI / 180) , body[i].X * Math.Sin(angle * Math.PI / 180), body[i].Y, sldrZoom.Value, "z", j);
                         gridik.Children.Add(new Line
                         {
                             Stroke = Brushes.Red,
@@ -101,6 +106,7 @@ namespace Vase
 
         public Point Axon3Dto2D(int alfa, int beta, double x, double y, double z, double zoom, string osaOtoc, int uhelOtoc)
         {
+            
             double X, Y, Z;
             double radUhelOtoc = uhelOtoc * Math.PI / 180;
             switch (osaOtoc)
@@ -122,6 +128,11 @@ namespace Vase
                     break;
                 default: X = x; Y = y; Z = z; break;
             }
+
+            X += sldrX.Value;
+            Y += sldrY.Value;
+            Z += sldrZ.Value;
+
             Point bod2D = new Point();
             double alfaR = alfa * Math.PI / 180;
             double betaR = beta * Math.PI / 180;

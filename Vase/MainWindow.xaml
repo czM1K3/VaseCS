@@ -11,7 +11,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="500"/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="gridik" Background="DarkGray" Grid.Column="1"/>
+        <Grid x:Name="gridik" Background="DarkGray" Grid.Column="1" ClipToBounds="True"/>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -20,8 +20,12 @@
             <Button x:Name="btnRender" Content="Render" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btnRender_Click"/>
             <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="75" Click="btnClear_Click"/>
             <Grid Name="gridSelect" Grid.Row="1" Background="LightGray" MouseDown="gridSelect_MouseDown"/>
-            <Slider x:Name="sldrAngle" HorizontalAlignment="Left" Margin="90,12,0,0" VerticalAlignment="Top" Width="150" Minimum="5" Maximum="90" IsSnapToTickEnabled="True" TickFrequency="5" Value="10"/>
-            <Label Content="{Binding ElementName=sldrAngle, Path=Value}" HorizontalAlignment="Left" Margin="240,7,0,0" VerticalAlignment="Top"/>
+            <Slider x:Name="sldrAngle" HorizontalAlignment="Left" Margin="90,12,0,0" VerticalAlignment="Top" Width="100" Minimum="5" Maximum="90" IsSnapToTickEnabled="True" TickFrequency="5" Value="10"/>
+            <Label Content="{Binding ElementName=sldrAngle, Path=Value}" HorizontalAlignment="Left" Margin="190,7,0,0" VerticalAlignment="Top"/>
+            <Slider x:Name="sldrX" HorizontalAlignment="Left" Margin="90,35,0,0" VerticalAlignment="Top" Width="60" Minimum="-100" Maximum="100" ValueChanged="sldr_ValueChanged"/>
+            <Slider x:Name="sldrY" HorizontalAlignment="Left" Margin="155,35,0,0" VerticalAlignment="Top" Width="60" Minimum="-100" Maximum="100" ValueChanged="sldr_ValueChanged"/>
+            <Slider x:Name="sldrZ" HorizontalAlignment="Left" Margin="215,35,0,0" VerticalAlignment="Top" Width="60" Minimum="-100" Maximum="100" ValueChanged="sldr_ValueChanged"/>
+            <Slider x:Name="sldrZoom" HorizontalAlignment="Left" Margin="218,10,0,0" VerticalAlignment="Top" Width="57" ValueChanged="sldr_ValueChanged" Minimum="0.1" Value="0.5"/>
         </Grid>
 
     </Grid>
